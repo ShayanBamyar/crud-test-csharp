@@ -1,6 +1,7 @@
 ﻿using Mc2.CrudTest.Domain.Errors;
 using Mc2.CrudTest.Domain.Primitives;
 using Mc2.CrudTest.Domain.Shared;
+using Mc2.CrudTest.Domain.ValueObjects.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace Mc2.CrudTest.Domain.ValueObjects
                 return Result.Failure<Email>(DomainErrors.Email.Empty);
             }
 
-            if (email.Split('@').Length != 2)
+            if (EmailValidation.CheckMail(email) is false)
             {
                 return Result.Failure<Email>(DomainErrors.Email.InvalidFormat);
             }

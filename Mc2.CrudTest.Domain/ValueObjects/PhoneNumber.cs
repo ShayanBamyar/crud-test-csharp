@@ -1,6 +1,7 @@
 ﻿using Mc2.CrudTest.Domain.Errors;
 using Mc2.CrudTest.Domain.Primitives;
 using Mc2.CrudTest.Domain.Shared;
+using Mc2.CrudTest.Domain.ValueObjects.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,11 @@ namespace Mc2.CrudTest.Domain.ValueObjects
             }
 
             if (phoneNumber.Length != MaxLength)
+            {
+                return Result.Failure<PhoneNumber>(DomainErrors.PhoneNumber.invalid);
+            }
+
+            if (PhoneNemberValidation.CheckPhoneNumber(phoneNumber) is false)
             {
                 return Result.Failure<PhoneNumber>(DomainErrors.PhoneNumber.invalid);
             }
