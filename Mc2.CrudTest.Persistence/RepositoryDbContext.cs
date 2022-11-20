@@ -1,4 +1,5 @@
-﻿using Mc2.CrudTest.Domain.Entities;
+﻿using GemBox.Email.Mime;
+using Mc2.CrudTest.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,16 @@ namespace Mc2.CrudTest.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Customer>()
+                    .HasIndex(x => x.Email)
+                    .IsUnique();
+
+            modelBuilder.Entity<Customer>()
+                    .HasIndex(x => new { x.FirstName, x.LastName ,x.DateOfBirth})
+                    .IsUnique();
+
+            modelBuilder.Entity<Customer>()
+                    .HasIndex(x => new { x.FirstName, x.LastName, x.DateOfBirth });
         }
 
     }
