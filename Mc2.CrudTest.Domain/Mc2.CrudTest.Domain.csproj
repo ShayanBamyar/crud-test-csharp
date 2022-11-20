@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="GemBox.Email" Version="17.0.1024" />
+    <PackageReference Include="libphonenumber-csharp" Version="8.13.0" />
+  </ItemGroup>
+
 </Project>
