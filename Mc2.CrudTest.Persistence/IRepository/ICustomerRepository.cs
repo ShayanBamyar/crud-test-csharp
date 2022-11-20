@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Mc2.CrudTest.Persistence.IRepository
 {
-    public interface ICustomerRepository : IRepositoryBase<Customer>
+    public interface ICustomerRepository : IRepositoryBase<CustomerBase>
     {
-        Task<IEnumerable<Customer>> GetAllCustomersAsync();
-        Task<Customer> GetCustomerByIdAsync(Guid customerId);
-        Task<Customer> GetCustomerWithDetailsAsync(Guid customerId);
-        void CreateCustomer(Customer customer);
-        void UpdateCustomer(Customer customer);
-        void DeleteCustomer(Customer customer);
+        Task<IEnumerable<CustomerBase>> GetAllCustomersAsync();
+        Task<CustomerBase> GetCustomerByIdAsync(Guid customerId);
+        Task<CustomerBase> GetCustomerWithDetailsAsync(Guid customerId);
+        void CreateCustomer(CustomerBase customer);
+        void UpdateCustomer(CustomerBase customer);
+        void DeleteCustomer(CustomerBase customer);
     }
 }

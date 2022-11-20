@@ -1,6 +1,8 @@
 ﻿using GemBox.Email.Mime;
 using Mc2.CrudTest.Domain.Entities;
+using Mc2.CrudTest.Persistence.EntityTypeConfiguration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,18 +22,9 @@ namespace Mc2.CrudTest.Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Customer>()
-                    .HasIndex(x => x.Email)
-                    .IsUnique();
-
-            modelBuilder.Entity<Customer>()
-                    .HasIndex(x => new { x.FirstName, x.LastName ,x.DateOfBirth})
-                    .IsUnique();
-
-            modelBuilder.Entity<Customer>()
-                    .HasIndex(x => new { x.FirstName, x.LastName, x.DateOfBirth });
+            modelBuilder.ApplyConfiguration(new CustomerEntityTypeConfiguration());
         }
-
     }
+
+
 }

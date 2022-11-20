@@ -1,4 +1,14 @@
+
+using Mc2.CrudTest.Persistence;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<RepositoryDbContext>(options => options.UseSqlServer(connectionString));
 
 // Add services to the container.
 

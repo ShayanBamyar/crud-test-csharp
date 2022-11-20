@@ -1,26 +1,23 @@
 ﻿using Mc2.CrudTest.Domain.Primitives;
-using Mc2.CrudTest.Domain.ValueObjects;
-
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Mc2.CrudTest.Domain.Entities
 {
-    public class Customer : AggregateRoot
+    public class Customer : BaseEntity
     {
-        public Customer(Guid id,  FirstName firstName, LastName lastName, Email email,PhoneNumber phoneNumber
-                        ,BankAccountNumber bankAccountNumber)
-        : base(id)
-        {      
-            FirstName = firstName;
-            LastName = lastName;
-            Email = email;
-            PhoneNumber = phoneNumber;
-            BankAccountNumber = bankAccountNumber;
+        public Customer(Guid id) : base(id)
+        {
         }
-        public FirstName FirstName { get; set; }
-        public LastName LastName { get; set; }
-        public Email Email { get; set; }
-        public PhoneNumber PhoneNumber { get; set;}
-        public DateOfBirth DateOfBirth { get; set; }
-        public BankAccountNumber BankAccountNumber { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string BankAccountNumber { get; set; }
     }
 }

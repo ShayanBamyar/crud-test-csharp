@@ -10,38 +10,38 @@ using System.Threading.Tasks;
 
 namespace Mc2.CrudTest.Persistence.Repository
 {
-    public class CustomerRepository : RepositoryBase<Customer>, ICustomerRepository
+    public class CustomerRepository : RepositoryBase<CustomerBase>, ICustomerRepository
     {
         public CustomerRepository(RepositoryDbContext repositoryContext)
             : base(repositoryContext)
         {
         }
-        public async Task<IEnumerable<Customer>> GetAllCustomersAsync()
+        public async Task<IEnumerable<CustomerBase>> GetAllCustomersAsync()
         {
             return await FindAll()
                .OrderBy(x => x.Id)
                .ToListAsync();
         }
-        public async Task<Customer> GetCustomerByIdAsync(Guid customerId)
+        public async Task<CustomerBase> GetCustomerByIdAsync(Guid customerId)
         {
             return await FindByCondition(customer => customer.Id.Equals(customerId))
                 .FirstOrDefaultAsync();
         }
-        public async Task<Customer> GetCustomerWithDetailsAsync(Guid customerId)
+        public async Task<CustomerBase> GetCustomerWithDetailsAsync(Guid customerId)
         {
             return await FindByCondition(customer => customer.Id.Equals(customerId))
                 .Include(x => x.Email)
                 .FirstOrDefaultAsync();
         }
-        public void CreateCustomer(Customer customer)
+        public void CreateCustomer(CustomerBase customer)
         {
             Create(customer);
         }
-        public void UpdateCustomer(Customer customer)
+        public void UpdateCustomer(CustomerBase customer)
         {
             Update(customer);
         }
-        public void DeleteCustomer(Customer customer)
+        public void DeleteCustomer(CustomerBase customer)
         {
             Delete(customer);
         }
