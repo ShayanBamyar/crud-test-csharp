@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Mc2.CrudTest.Domain.Errors.DomainErrors;
 
 namespace Mc2.CrudTest.Domain.ValueObjects
 {
@@ -26,7 +27,7 @@ namespace Mc2.CrudTest.Domain.ValueObjects
                 return Result.Failure<Email>(DomainErrors.Email.Empty);
             }
 
-            if (EmailValidation.CheckMail(email) is false)
+            if (email.Split('@').Length != 2)
             {
                 return Result.Failure<Email>(DomainErrors.Email.InvalidFormat);
             }

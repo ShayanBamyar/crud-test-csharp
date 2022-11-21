@@ -60,7 +60,7 @@ namespace Mc2.CrudTest.API.Controllers
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));
                 }
-                return Ok(customer);
+                return View(customer);
 
             }
             catch
@@ -88,7 +88,7 @@ namespace Mc2.CrudTest.API.Controllers
             {
                 return NotFound();
             }
-            return Ok(customer);
+            return View(customer);
         }
 
         [Route("Edit")]
@@ -123,7 +123,7 @@ namespace Mc2.CrudTest.API.Controllers
                     }
                     return RedirectToAction(nameof(Index));
                 }
-                return Ok(customer);
+                return View(customer);
             }
             catch
             {
@@ -147,7 +147,7 @@ namespace Mc2.CrudTest.API.Controllers
                 return NotFound();
             }
 
-            return Ok(customer);
+            return View(customer);
         }
 
         [Route("Delete")]

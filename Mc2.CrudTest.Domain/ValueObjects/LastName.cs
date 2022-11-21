@@ -12,29 +12,27 @@ namespace Mc2.CrudTest.Domain.ValueObjects
     public sealed class LastName : ValueObject
     {
         public const int MaxLength = 150;
-        private LastName(string value)
+        public LastName(string value)
         {
             Value = value;
         }
-
         public string Value { get; }
 
 
-        public static Result<LastName> Create(string LastName)
+        public static Result<LastName> Create(string lastName)
         {
-            if (string.IsNullOrWhiteSpace(LastName))
+            if (string.IsNullOrWhiteSpace(lastName))
             {
                 return Result.Failure<LastName>(DomainErrors.LastName.Empty);
             }
 
-            if (LastName.Length > MaxLength)
+            if (lastName.Length > MaxLength)
             {
                 return Result.Failure<LastName>(DomainErrors.LastName.TooLong);
             }
 
-            return new LastName(LastName);
+            return new LastName(lastName);
         }
-
 
         public override IEnumerable<object> GetAtomicValues()
         {
